@@ -23,6 +23,10 @@ public class Cube
         faces[i].setFacet(c % 3, c / 3, new Facet(colors[i], i*9 + c));
       }
     }
+    
+    System.out.println(faces[0].toString());
+    faces[0].rotateLeft();
+    System.out.println(faces[0].toString());
   }
   
   public Face getFace(Side side)

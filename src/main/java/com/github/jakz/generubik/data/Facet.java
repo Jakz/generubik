@@ -13,4 +13,15 @@ public class Facet
   
   public int id() { return id; }
   public Color color() { return color; }
+  
+  public boolean equals(Object other)
+  {
+    if (other instanceof Facet)
+    {
+      Facet fother = (Facet)other;
+      return fother.color == color && fother.id == id;
+    }
+    else
+      return false;
+  }
 }
