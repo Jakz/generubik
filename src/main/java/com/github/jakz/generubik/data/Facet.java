@@ -33,4 +33,10 @@ public class Facet
   {
     return Objects.hash(id, color);
   }
+  
+  @Override
+  public String toString()
+  {
+    return String.format("%02d%s", id, color.symbol);
+  }
 }

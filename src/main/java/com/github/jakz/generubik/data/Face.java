@@ -124,7 +124,7 @@ public class Face
     for (int y = 0; y < 3; ++y)
     {
       for (int x = 0; x < 3; ++x)
-        sb.append(String.format("%02d%s ", facets[y][x].id, facets[y][x].color().symbol));
+        sb.append(facets[y][x]).append(" ");
       sb.append("\n");
       
     }

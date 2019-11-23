@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import com.github.jakz.generubik.data.Color;
+import com.github.jakz.generubik.data.Cube;
 import com.github.jakz.generubik.data.Face;
 import com.github.jakz.generubik.data.Facet;
 
@@ -43,5 +44,13 @@ public class Tests
     Face face = new Face(Color.YELLOW, 10);
     Face rotated = face.dupe().rotateRight().rotateRight().rotateRight().rotateRight();
     assertEquals(face, rotated);
+  }
+  
+  @Test
+  public void testCornerSet()
+  {
+    Cube cube = new Cube();
+    CornerMap set = new CornerMap(cube);
+    System.out.println(set);
   }
 }
