@@ -1,5 +1,7 @@
 package com.github.jakz.generubik.data;
 
+import java.util.Objects;
+
 public class Facet
 {
   int id;
@@ -14,6 +16,7 @@ public class Facet
   public int id() { return id; }
   public Color color() { return color; }
   
+  @Override
   public boolean equals(Object other)
   {
     if (other instanceof Facet)
@@ -23,5 +26,11 @@ public class Facet
     }
     else
       return false;
+  }
+  
+  @Override
+  public int hashCode()
+  {
+    return Objects.hash(id, color);
   }
 }

@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.github.jakz.generubik.data.Corner;
 import com.github.jakz.generubik.data.Cube;
 import com.github.jakz.generubik.data.Face;
 import com.github.jakz.generubik.data.Side;
@@ -47,12 +48,14 @@ public class FacePanel extends JPanel
   void refresh()
   {
     Face face = cube.getFace(side);
+    int ci = 0;
     
     for (int y = 0; y < 3; ++y)
       for (int x = 0; x < 3; ++x)
       {
-        labels[y][x].setBackground(face.get(x, y).color().color);
-        labels[y][x].setText("" + face.get(x, y).id());
+        labels[y][x].setBackground(face.get(Corner.drawingOrder[ci]).color().color);
+        labels[y][x].setText("" + face.get(Corner.drawingOrder[ci]).id());
+        ++ci;
       }
   }
   

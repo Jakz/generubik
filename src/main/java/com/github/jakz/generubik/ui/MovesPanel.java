@@ -1,7 +1,10 @@
 package com.github.jakz.generubik.ui;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Insets;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -31,13 +34,17 @@ public class MovesPanel extends JPanel
     this.mediator = mediator;
     this.setPreferredSize(new Dimension(200, 200));
     
+    JPanel buttons = new JPanel();
+    buttons.setLayout(new GridLayout(2,3));
+    this.add(buttons);
+    
     for (int i = 0; i < moves.length; ++i)
     {
       JButton button = new JButton(names[i]);
       Move move = moves[i];
       
       button.addActionListener(e -> this.mediator.applyMove(move));
-      this.add(button);
+      buttons.add(button);
     }
   }
 }

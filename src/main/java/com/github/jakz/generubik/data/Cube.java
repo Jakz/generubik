@@ -47,6 +47,16 @@ public class Cube
     return faces[side.ordinal()];
   }
   
+  public void rotateFaceLeft(Side side)
+  {
+    getFace(side).rotateLeft();
+  }
+  
+  public void rotateFaceRight(Side side)
+  {
+    getFace(side).rotateRight();
+  }
+  
   public void applyMove(Move move)
   {
     move.apply(this);

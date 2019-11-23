@@ -28,6 +28,24 @@ public class Face
     return facets[y][x];
   }
   
+  public Facet get(Corner corner)
+  {
+    switch (corner)
+    {
+      case TOP_LEFT: return facets[0][0];
+      case TOP: return facets[0][1];
+      case TOP_RIGHT: return facets[0][2];
+      case RIGHT: return facets[1][2];
+      case BOTTOM_RIGHT: return facets[2][2];
+      case BOTTOM: return facets[2][1];
+      case BOTTOM_LEFT: return facets[2][0];
+      case LEFT: return facets[1][0];
+      case CENTER: return facets[1][1];
+      default:
+        throw new NullPointerException();
+    }
+  }
+  
   public Face dupe()
   {
     Face face = new Face();
@@ -36,7 +54,7 @@ public class Face
         face.facets[y][x] = new Facet(facets[y][x].color, facets[y][x].id);
     return face;
   }
- 
+   
   private void swap(int x1, int y1, int x2, int y2)
   {
     Facet tmp = facets[x1][y1];
@@ -83,6 +101,16 @@ public class Face
     reverseRows();
     return this;
   }
+  
+  public Facet topLeft() { return get(Corner.TOP_LEFT); }
+  public Facet top() { return get(Corner.TOP); }
+  public Facet topRight() { return get(Corner.TOP_RIGHT); }
+  public Facet right() { return get(Corner.RIGHT); }
+  public Facet bottomRight() { return get(Corner.BOTTOM_RIGHT); }
+  public Facet bottom() { return get(Corner.BOTTOM); }
+  public Facet bottomLeft() { return get(Corner.BOTTOM_LEFT); }
+  public Facet left() { return get(Corner.LEFT); }
+  public Facet center() { return get(Corner.CENTER); }
   
   public boolean equals(Object other)
   {
