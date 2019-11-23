@@ -1,5 +1,7 @@
 package com.github.jakz.generubik.data;
 
+import com.github.jakz.generubik.data.moves.Move;
+
 public class Cube
 {
   private Face[] faces = new Face[6];
@@ -24,22 +26,29 @@ public class Cube
       }
     }
     
-    System.out.println(faces[0].toString());
+    /*System.out.println(faces[0].toString());
     faces[0].rotateLeft();
     System.out.println(faces[0].toString());
+    
+    swapFaces(Side.LEFT, Side.RIGHT);*/
   }
   
+  public void swapFaces(Side side1, Side side2)
+  {
+    //TODO: fragile, based on index
+    Face tmp = faces[side1.ordinal()];
+    faces[side1.ordinal()] = faces[side2.ordinal()];
+    faces[side2.ordinal()] = tmp;
+  }
+    
   public Face getFace(Side side)
   {
-    switch (side)
-    {
-      case FRONT: return faces[2];
-      case UP: return faces[0];
-      case LEFT: return faces[1];
-      case RIGHT: return faces[3];
-      case BACK: return faces[4];
-      case DOWN: return faces[5];
-      default: return faces[2];
-    }
+    //TODO: fragile, based on index
+    return faces[side.ordinal()];
+  }
+  
+  public void applyMove(Move move)
+  {
+    move.apply(this);
   }
 }

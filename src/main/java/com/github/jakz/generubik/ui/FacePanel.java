@@ -10,17 +10,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.github.jakz.generubik.data.Cube;
 import com.github.jakz.generubik.data.Face;
+import com.github.jakz.generubik.data.Side;
 
 public class FacePanel extends JPanel
 {
-  private final Face face;
+  private final Cube cube;
+  private final Side side;
   
   private JLabel[][] labels;
   
-  public FacePanel(Face face, int cellSize)
+  public FacePanel(Cube cube, Side side, int cellSize)
   {
-    this.face = face;
+    this.cube = cube;
+    this.side = side;
     
     this.setLayout(new GridLayout(3,3));
     this.setPreferredSize(new Dimension(cellSize*3, cellSize*3));
@@ -40,8 +44,10 @@ public class FacePanel extends JPanel
     refresh();
   }
   
-  private void refresh()
+  void refresh()
   {
+    Face face = cube.getFace(side);
+    
     for (int y = 0; y < 3; ++y)
       for (int x = 0; x < 3; ++x)
       {
