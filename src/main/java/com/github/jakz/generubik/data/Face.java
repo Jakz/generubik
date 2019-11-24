@@ -102,6 +102,18 @@ public class Face
     return this;
   }
   
+  public Face flipRow(int i)
+  {
+    swap(i, 0,   i, 2);
+    return this;
+  }
+  
+  public Face flipColumn(int i)
+  {
+    swap(0, i,   2, i);
+    return this;
+  }
+  
   public Facet topLeft() { return get(Corner.TOP_LEFT); }
   public Facet top() { return get(Corner.TOP); }
   public Facet topRight() { return get(Corner.TOP_RIGHT); }
