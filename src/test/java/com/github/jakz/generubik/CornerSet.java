@@ -10,7 +10,7 @@ import com.github.jakz.generubik.data.Face;
 import com.github.jakz.generubik.data.Facet;
 import com.github.jakz.generubik.data.Side;
 
-public class CornerMap
+public class CornerSet
 {
   private class Corner
   {
@@ -44,7 +44,7 @@ public class CornerMap
   
   private final Set<Corner> corners;
   
-  public CornerMap(Cube cube)
+  public CornerSet(Cube cube)
   {
     corners = new HashSet<>();
     
@@ -80,6 +80,12 @@ public class CornerMap
     corners.add(new Corner(up.right(), right.top()));
     corners.add(new Corner(down.left(), left.bottom()));
     corners.add(new Corner(down.right(), right.bottom())); 
+  }
+  
+  @Override
+  public boolean equals(Object other)
+  {
+    return other instanceof CornerSet && ((CornerSet)other).corners.equals(corners);
   }
   
   @Override

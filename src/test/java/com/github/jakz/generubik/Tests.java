@@ -47,10 +47,10 @@ public class Tests
   }
   
   @Test
-  public void testCornerSet()
+  public void testTwoCornerSetOfSolvedCubeAreEqual()
   {
-    Cube cube = new Cube();
-    CornerMap set = new CornerMap(cube);
-    System.out.println(set);
+    Cube cube1 = new Cube(), cube2 = new Cube();
+    CornerSet set1 = new CornerSet(cube1), set2 = new CornerSet(cube2);
+    assertEquals(set1, set2);
   }
 }
