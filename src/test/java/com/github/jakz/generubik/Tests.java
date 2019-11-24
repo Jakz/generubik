@@ -15,7 +15,8 @@ import com.github.jakz.generubik.data.Facet;
 @Suite.SuiteClasses({
   CubeTests.class,
   FaceTests.class,
-  CubeRotationMoveTests.class
+  CubeRotationMoveTests.class,
+  FaceRotationMoveTests.class,
 })
 public class Tests
 {

@@ -7,5 +7,5 @@ public enum Side
   FRONT,  
   RIGHT,
   BACK,
-  DOWN,
+  DOWN
 }

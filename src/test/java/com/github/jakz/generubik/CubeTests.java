@@ -16,7 +16,7 @@ public class CubeTests
     Face face = new Face(Color.BLUE, 0);
     assertEquals(face, face);
   }
-  
+
   @Test
   public void facesConstructedInSameWayAreEqual()
   {

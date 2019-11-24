@@ -18,6 +18,7 @@ public class CubeRotationMove extends Move
   @Override
   public void apply(Cube cube)
   {
+    /* axis Y */
     if (axis == Axis.Y && !ccw)
     {
       cube.swapFaces(Side.LEFT, Side.FRONT);
@@ -37,6 +38,7 @@ public class CubeRotationMove extends Move
       cube.getFace(Side.DOWN).rotateRight();
     }
     
+    /* axis Z */
     else if (axis == Axis.Z && !ccw)
     {
       cube.swapFaces(Side.DOWN, Side.RIGHT);
@@ -66,6 +68,7 @@ public class CubeRotationMove extends Move
       cube.rotateFaceRight(Side.BACK);
     }
     
+    /* axis X */
     else if (axis == Axis.X && !ccw)
     {
       cube.swapFaces(Side.UP, Side.FRONT);
