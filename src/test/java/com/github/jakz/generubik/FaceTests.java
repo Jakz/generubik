@@ -11,6 +11,19 @@ import com.github.jakz.generubik.data.Face;
 public class FaceTests
 {
   @Test
+  public void sameFaceIsEqualToItself()
+  {
+    Face face = new Face(Color.BLUE, 0);
+    assertEquals(face, face);
+  }
+
+  @Test
+  public void facesConstructedInSameWayAreEqual()
+  {
+    assertEquals(new Face(Color.BLUE, 5), new Face(Color.BLUE, 5));
+  }
+  
+  @Test
   public void rotationLeftThanRightProduceSameResult()
   {
     Face face = new Face(Color.YELLOW, 10);

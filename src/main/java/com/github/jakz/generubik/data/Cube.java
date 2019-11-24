@@ -1,5 +1,7 @@
 package com.github.jakz.generubik.data;
 
+import java.util.Random;
+
 import com.github.jakz.generubik.data.moves.Move;
 
 public class Cube
@@ -18,6 +20,16 @@ public class Cube
     reset();
   }
   
+  public Cube dupe()
+  {
+    Cube cube = new Cube();
+    
+    for (int i = 0; i < 6; ++i)
+      cube.faces[i] = faces[i].dupe();
+    
+    return cube;
+  }
+  
   public void reset()
   {
     Color[] colors = new Color[] { Color.WHITE, Color.ORANGE, Color.GREEN, Color.RED, Color.BLUE, Color.YELLOW };
@@ -29,12 +41,14 @@ public class Cube
         faces[i].setFacet(c % 3, c / 3, new Facet(colors[i], i*9 + c));
       }
     }
+  }
+  
+  public void shuffle()
+  {
+    Random r = new Random();
     
-    /*System.out.println(faces[0].toString());
-    faces[0].rotateLeft();
-    System.out.println(faces[0].toString());
-    
-    swapFaces(Side.LEFT, Side.RIGHT);*/
+    for (int i = 0; i < 256; ++i)
+      applyMove(Move.faceRotations[r.nextInt(Move.faceRotations.length)]);
   }
   
   public void swapFaces(Side side1, Side side2)
