@@ -19,6 +19,7 @@ public class CornerSet
     Corner(Facet... facets) 
     { 
       this.facets = facets;
+      Arrays.sort(this.facets);
     }
     
     @Override

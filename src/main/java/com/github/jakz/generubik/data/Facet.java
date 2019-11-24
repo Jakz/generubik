@@ -2,10 +2,10 @@ package com.github.jakz.generubik.data;
 
 import java.util.Objects;
 
-public class Facet
+public class Facet implements Comparable<Facet>
 {
-  int id;
-  Color color;
+  private final int id;
+  private final Color color;
   
   public Facet(Color color, int id)
   {
@@ -38,5 +38,16 @@ public class Facet
   public String toString()
   {
     return String.format("%02d%s", id, color.symbol);
+  }
+
+  @Override
+  public int compareTo(Facet o)
+  {
+    int i = Integer.compare(id, o.id);
+    
+    if (i != 0)
+      return i;
+    
+    return color.compareTo(o.color);
   }
 }

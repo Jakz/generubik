@@ -57,6 +57,12 @@ public class Cube
     getFace(side).rotateRight();
   }
   
+  public void flipFace(Side side)
+  {
+    getFace(side).rotateRight();
+    getFace(side).rotateRight();
+  }
+  
   public void applyMove(Move move)
   {
     move.apply(this);

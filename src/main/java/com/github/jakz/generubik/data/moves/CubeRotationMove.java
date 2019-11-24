@@ -71,10 +71,24 @@ public class CubeRotationMove extends Move
       cube.swapFaces(Side.UP, Side.FRONT);
       cube.swapFaces(Side.FRONT, Side.DOWN);
       cube.swapFaces(Side.DOWN, Side.BACK);
-      
+     
+      cube.flipFace(Side.BACK);
+      cube.flipFace(Side.DOWN);
       
       cube.rotateFaceRight(Side.RIGHT);
       cube.rotateFaceLeft(Side.LEFT);
+    }
+    else if (axis == Axis.X && ccw)
+    {
+      cube.swapFaces(Side.UP, Side.BACK);
+      cube.swapFaces(Side.BACK, Side.DOWN);
+      cube.swapFaces(Side.DOWN, Side.FRONT);
+      
+      cube.flipFace(Side.BACK);
+      cube.flipFace(Side.UP);
+      
+      cube.rotateFaceLeft(Side.RIGHT);
+      cube.rotateFaceRight(Side.LEFT);
     }
   }
 }

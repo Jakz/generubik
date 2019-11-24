@@ -51,7 +51,7 @@ public class Face
     Face face = new Face();
     for (int y = 0; y < 3; ++y)
       for (int x = 0; x < 3; ++x)
-        face.facets[y][x] = new Facet(facets[y][x].color, facets[y][x].id);
+        face.facets[y][x] = new Facet(facets[y][x].color(), facets[y][x].id());
     return face;
   }
    
