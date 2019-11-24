@@ -87,25 +87,53 @@ public class FaceRotationMove extends Move
       }
       
       case FRONT:
-      case BACK:
       {
-        final boolean rccw = side == Side.FRONT ? this.ccw : !this.ccw;
-        
-        cube.rotateFace(side, rccw);
-        
-        final int rowIndex = side == Side.FRONT ? Cube.FIRST_ROW : Cube.LAST_ROW;
-        //final int columnIndex = side == Side.FRONT ? Cube.LAST_COLUMN : Cube.LAST;
+        cube.rotateFace(Side.FRONT, ccw);
 
-/*
         if (!ccw)
         {
-          cube.swapRowToColumn(Side.UP, index, Side.RIGHT, index);
-          cube.swapColumnToRow(Side.LEFT, index, Side.UP, index);
+          cube.swapColumnToRow(Side.RIGHT, Cube.FIRST_COLUMN, Side.DOWN, Cube.FIRST_ROW);
+          cube.swapColumnToRow(Side.RIGHT, Cube.FIRST_COLUMN, Side.UP, Cube.LAST_ROW);
+          cube.swapRowToColumn(Side.UP, Cube.LAST_ROW, Side.LEFT, Cube.LAST_COLUMN);
+          cube.getFace(Side.UP).flipRow(Cube.LAST_ROW);
+          cube.getFace(Side.DOWN).flipRow(Cube.FIRST_ROW);
+
         }
         else
         {
-          
-        }*/
+          cube.swapColumnToRow(Side.LEFT, Cube.LAST_COLUMN, Side.DOWN, Cube.FIRST_ROW);
+          cube.swapColumnToRow(Side.LEFT, Cube.LAST_COLUMN, Side.UP, Cube.LAST_ROW);
+          cube.swapRowToColumn(Side.UP, Cube.LAST_ROW, Side.RIGHT, Cube.FIRST_COLUMN);
+          cube.getFace(Side.LEFT).flipColumn(Cube.LAST_COLUMN);
+          cube.getFace(Side.RIGHT).flipColumn(Cube.FIRST_COLUMN);
+        }
+
+        
+        break;
+      }
+      
+      case BACK:
+      {
+        cube.rotateFace(Side.BACK, ccw);
+
+        if (!ccw)
+        {
+          cube.swapColumnToRow(Side.RIGHT, Cube.LAST_COLUMN, Side.DOWN, Cube.LAST_ROW);
+          cube.swapRowToColumn(Side.DOWN, Cube.LAST_ROW, Side.LEFT, Cube.FIRST_COLUMN);
+          cube.swapColumnToRow(Side.LEFT, Cube.FIRST_COLUMN, Side.UP, Cube.FIRST_ROW);
+          cube.getFace(Side.LEFT).flipColumn(Cube.FIRST_COLUMN);
+          cube.getFace(Side.RIGHT).flipColumn(Cube.LAST_COLUMN);
+        }
+        else
+        {
+          cube.swapColumnToRow(Side.LEFT, Cube.FIRST_COLUMN, Side.DOWN, Cube.LAST_ROW);
+          cube.swapRowToColumn(Side.DOWN, Cube.LAST_ROW, Side.RIGHT, Cube.LAST_COLUMN);
+          cube.swapColumnToRow(Side.RIGHT, Cube.LAST_COLUMN, Side.UP, Cube.FIRST_ROW);
+          cube.getFace(Side.UP).flipRow(Cube.FIRST_ROW);
+          cube.getFace(Side.DOWN).flipRow(Cube.LAST_ROW);
+        }
+        
+        break;
       }
     }
   }
