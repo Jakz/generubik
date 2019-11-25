@@ -6,35 +6,53 @@ import com.github.jakz.generubik.data.Side;
 public abstract class Move
 {
   boolean ccw;
+  String symbol;
   
-  protected Move(boolean ccw)
+  protected Move(String symbol, boolean ccw)
   {
+    this.symbol = symbol;
     this.ccw = ccw;
+  }
+  
+  public String symbol()
+  {
+    return symbol;
   }
   
   public abstract void apply(Cube cube);
   
   public static Move[] cubeRotations = new Move[] {
-    new CubeRotationMove(CubeRotationMove.Axis.X, false),
-    new CubeRotationMove(CubeRotationMove.Axis.X, true),
-    new CubeRotationMove(CubeRotationMove.Axis.Y, false),
-    new CubeRotationMove(CubeRotationMove.Axis.Y, true),
-    new CubeRotationMove(CubeRotationMove.Axis.Z, false),
-    new CubeRotationMove(CubeRotationMove.Axis.Z, true),
+    new CubeRotationMove(CubeRotationMove.Axis.X, false, "X"),
+    new CubeRotationMove(CubeRotationMove.Axis.X, true, "X'"),
+    new CubeRotationMove(CubeRotationMove.Axis.Y, false, "Y"),
+    new CubeRotationMove(CubeRotationMove.Axis.Y, true, "Y'"),
+    new CubeRotationMove(CubeRotationMove.Axis.Z, false, "Z"),
+    new CubeRotationMove(CubeRotationMove.Axis.Z, true, "Z'"),
   };
   
   public static Move[] faceRotations = new Move[] {
-    FaceRotationMove.of(Side.UP, false),
-    FaceRotationMove.of(Side.UP, true),
-    FaceRotationMove.of(Side.DOWN, false),
-    FaceRotationMove.of(Side.DOWN, true),
-    FaceRotationMove.of(Side.LEFT, false),
-    FaceRotationMove.of(Side.LEFT, true),
-    FaceRotationMove.of(Side.RIGHT, false),
-    FaceRotationMove.of(Side.RIGHT, true),
-    FaceRotationMove.of(Side.FRONT, false),
-    FaceRotationMove.of(Side.FRONT, true),
-    FaceRotationMove.of(Side.BACK, false),
-    FaceRotationMove.of(Side.BACK, true),
+    FaceRotationMove.of(Side.UP, false, "U"),
+    FaceRotationMove.of(Side.UP, true, "U'"),
+    FaceRotationMove.of(Side.DOWN, false, "D"),
+    FaceRotationMove.of(Side.DOWN, true, "D'"),
+    FaceRotationMove.of(Side.LEFT, false, "L"),
+    FaceRotationMove.of(Side.LEFT, true, "L'"),
+    FaceRotationMove.of(Side.RIGHT, false, "R"),
+    FaceRotationMove.of(Side.RIGHT, true, "R'"),
+    FaceRotationMove.of(Side.FRONT, false, "F"),
+    FaceRotationMove.of(Side.FRONT, true, "F'"),
+    FaceRotationMove.of(Side.BACK, false, "B"),
+    FaceRotationMove.of(Side.BACK, true, "B'"),
   };
+  
+  public static CubeRotationMove cubeRotation(CubeRotationMove.Axis axis, boolean ccw)
+  {
+    return new CubeRotationMove(axis, ccw, "");
+  }
+  
+  public static FaceRotationMove faceRotation(Side side, boolean ccw)
+  {
+    //TODO: should search between existing moves
+    return FaceRotationMove.of(side, ccw, "");
+  }
 }

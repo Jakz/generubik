@@ -7,20 +7,20 @@ public class FaceRotationMove extends Move
 {
   public final Side side;
   
-  private FaceRotationMove(Side side, boolean ccw)
+  private FaceRotationMove(Side side, boolean ccw, String symbol)
   {
-    super(ccw);
+    super(symbol, ccw);
     this.side = side;
   }
   
-  public static FaceRotationMove of(Side side, boolean ccw)
+  protected static FaceRotationMove of(Side side, boolean ccw, String symbol)
   {
-    return new FaceRotationMove(side, ccw);
+    return new FaceRotationMove(side, ccw, symbol);
   }
   
-  public static FaceRotationMove of(Side side)
+  protected static FaceRotationMove of(Side side, String symbol)
   {
-    return of(side, false);
+    return of(side, false, symbol);
   }
 
   @Override

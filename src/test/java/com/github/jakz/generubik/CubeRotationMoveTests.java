@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import com.github.jakz.generubik.data.Cube;
 import com.github.jakz.generubik.data.moves.CubeRotationMove;
+import com.github.jakz.generubik.data.moves.Move;
 
 public class CubeRotationMoveTests
 {
@@ -16,7 +17,7 @@ public class CubeRotationMoveTests
     Cube cube1 = new Cube(), cube2 = new Cube();
     CornerSet base = new CornerSet(cube1);
     
-    cube2.applyMove(new CubeRotationMove(CubeRotationMove.Axis.Y, false));
+    cube2.applyMove(Move.cubeRotation(CubeRotationMove.Axis.Y, false));
     
     assertEquals(base, new CornerSet(cube2));
     assertNotEquals(cube1, cube2);
@@ -28,7 +29,7 @@ public class CubeRotationMoveTests
     Cube cube1 = new Cube(), cube2 = new Cube();
     CornerSet base = new CornerSet(cube1);
     
-    cube2.applyMove(new CubeRotationMove(CubeRotationMove.Axis.Y, true));
+    cube2.applyMove(Move.cubeRotation(CubeRotationMove.Axis.Y, true));
     
     assertEquals(base, new CornerSet(cube2));
     assertNotEquals(cube1, cube2);
@@ -40,7 +41,7 @@ public class CubeRotationMoveTests
     Cube cube1 = new Cube(), cube2 = new Cube();
     CornerSet base = new CornerSet(cube1);
     
-    cube2.applyMove(new CubeRotationMove(CubeRotationMove.Axis.Z, false));
+    cube2.applyMove(Move.cubeRotation(CubeRotationMove.Axis.Z, false));
     
     assertEquals(base, new CornerSet(cube2));
     assertNotEquals(cube1, cube2);
@@ -52,7 +53,7 @@ public class CubeRotationMoveTests
     Cube cube1 = new Cube(), cube2 = new Cube();
     CornerSet base = new CornerSet(cube1);
     
-    cube2.applyMove(new CubeRotationMove(CubeRotationMove.Axis.Z, true));
+    cube2.applyMove(Move.cubeRotation(CubeRotationMove.Axis.Z, true));
     
     assertEquals(base, new CornerSet(cube2));
     assertNotEquals(cube1, cube2);
@@ -64,7 +65,7 @@ public class CubeRotationMoveTests
     Cube cube1 = new Cube(), cube2 = new Cube();
     CornerSet base = new CornerSet(cube1);
     
-    cube2.applyMove(new CubeRotationMove(CubeRotationMove.Axis.X, false));
+    cube2.applyMove(Move.cubeRotation(CubeRotationMove.Axis.X, false));
     
     assertEquals(base, new CornerSet(cube2));
     assertNotEquals(cube1, cube2);
@@ -76,7 +77,7 @@ public class CubeRotationMoveTests
     Cube cube1 = new Cube(), cube2 = new Cube();
     CornerSet base = new CornerSet(cube1);
     
-    cube2.applyMove(new CubeRotationMove(CubeRotationMove.Axis.X, true));
+    cube2.applyMove(Move.cubeRotation(CubeRotationMove.Axis.X, true));
     
     assertEquals(base, new CornerSet(cube2));
     assertNotEquals(cube1, cube2);

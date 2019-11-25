@@ -3,7 +3,7 @@ package com.github.jakz.generubik;
 import com.github.jakz.generubik.data.Cube;
 import com.github.jakz.generubik.ui.CubePanel;
 import com.github.jakz.generubik.ui.Mediator;
-import com.github.jakz.generubik.ui.MovesPanel;
+import com.github.jakz.generubik.ui.OperationsPanel;
 import com.pixbits.lib.ui.UIUtils;
 import com.pixbits.lib.ui.WrapperFrame;
 
@@ -13,12 +13,14 @@ public class App
   {
     Cube cube = new Cube();
     
+    UIUtils.setNimbusLNF();
+    
     WrapperFrame<CubePanel> frame = UIUtils.buildFrame(new CubePanel(cube, 50), "Cube");
     frame.exitOnClose();
     frame.centerOnScreen();
     frame.setVisible(true);
     
-    WrapperFrame<MovesPanel> moves = UIUtils.buildFrame(new MovesPanel(Mediator.of(cube, frame.panel())), "Moves");
+    WrapperFrame<OperationsPanel> moves = UIUtils.buildFrame(new OperationsPanel(Mediator.of(cube, frame.panel())), "Moves");
     moves.centerOnScreen();
     moves.setVisible(true);
   }

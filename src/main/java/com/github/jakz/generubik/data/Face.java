@@ -4,43 +4,53 @@ import java.util.Arrays;
 
 public class Face
 {
-  private Facet[][] facets = new Facet[3][3];
+  private Facet[] facets = new Facet[Cube.SIZE*Cube.SIZE];
   
   public Face()
   {
     
   }
   
+  private Facet facet(int x, int y)
+  {
+    return facets[y*Cube.SIZE + x]; 
+  }
+  
   public Face(Color color, int i)
   {
-    for (int y = 0; y < 3; ++y)
-      for (int x = 0; x < 3; ++x)
-        facets[y][x] = new Facet(color, i + y*3 + x);
+    reset(i, color);
+  }
+  
+  public void reset(int base, Color color)
+  {
+    for (int y = 0; y < Cube.SIZE; ++y)
+      for (int x = 0; x < Cube.SIZE; ++x)
+        setFacet(x, y, new Facet(color, base + y*3 + x));
   }
 
   void setFacet(int x, int y, Facet facet)
   {
-    facets[y][x] = facet;
+    facets[y*Cube.SIZE + x] = facet;
   }
   
   public Facet get(int x, int y)
   {
-    return facets[y][x];
+    return facet(x, y);
   }
   
   public Facet get(Corner corner)
   {
     switch (corner)
     {
-      case TOP_LEFT: return facets[0][0];
-      case TOP: return facets[0][1];
-      case TOP_RIGHT: return facets[0][2];
-      case RIGHT: return facets[1][2];
-      case BOTTOM_RIGHT: return facets[2][2];
-      case BOTTOM: return facets[2][1];
-      case BOTTOM_LEFT: return facets[2][0];
-      case LEFT: return facets[1][0];
-      case CENTER: return facets[1][1];
+      case TOP_LEFT: return facet(0,0);
+      case TOP: return facet(1,0);
+      case TOP_RIGHT: return facet(2,0);
+      case RIGHT: return facet(2,1);
+      case BOTTOM_RIGHT: return facet(2,2);
+      case BOTTOM: return facet(1,2);
+      case BOTTOM_LEFT: return facet(0,2);
+      case LEFT: return facet(0,1);
+      case CENTER: return facet(1,1);
       default:
         throw new NullPointerException();
     }
@@ -51,15 +61,15 @@ public class Face
     Face face = new Face();
     for (int y = 0; y < 3; ++y)
       for (int x = 0; x < 3; ++x)
-        face.facets[y][x] = new Facet(facets[y][x].color(), facets[y][x].id());
+        face.facets[Cube.SIZE*y + x] = new Facet(facet(x,y).color(), facet(x,y).id());
     return face;
   }
    
   private void swap(int x1, int y1, int x2, int y2)
   {
-    Facet tmp = facets[x1][y1];
-    facets[x1][y1] = facets[x2][y2];
-    facets[x2][y2] = tmp;
+    Facet tmp = facet(x1, y1);
+    setFacet(x1, y1, facet(x2, y2));
+    setFacet(x2, y2, tmp);
   }
   
   public void transpose()
@@ -79,13 +89,13 @@ public class Face
   private void reverseColumns()
   {
     for (int i = 0; i < 3; ++i)
-      swap(i, 0,   i, 2);
+      swap(0, i,   2, i);
   }
   
   private void reverseRows()
   {
     for (int i = 0; i < 3; ++i)
-      swap(0, i,   2, i);
+      swap(i, 0,   i, 2);
   }
   
   public Face rotateRight()
@@ -104,14 +114,19 @@ public class Face
   
   public Face flipRow(int i)
   {
-    swap(i, 0,   i, 2);
+    swap(0, i,   2, i);
     return this;
   }
   
   public Face flipColumn(int i)
   {
-    swap(0, i,   2, i);
+    swap(i, 0,   i, 2);
     return this;
+  }
+  
+  public boolean isSolved()
+  {
+    return Arrays.stream(facets).allMatch(facet -> facet.color() == facets[0].color());
   }
   
   public Facet topLeft() { return get(Corner.TOP_LEFT); }
@@ -133,10 +148,10 @@ public class Face
   {
     StringBuilder sb = new StringBuilder();
     
-    for (int y = 0; y < 3; ++y)
+    for (int y = 0; y < Cube.SIZE; ++y)
     {
-      for (int x = 0; x < 3; ++x)
-        sb.append(facets[y][x]).append(" ");
+      for (int x = 0; x < Cube.SIZE; ++x)
+        sb.append(facet(x,y)).append(" ");
       sb.append("\n");
       
     }

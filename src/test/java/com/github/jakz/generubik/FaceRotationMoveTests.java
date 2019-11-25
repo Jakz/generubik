@@ -7,6 +7,7 @@ import org.junit.Test;
 import com.github.jakz.generubik.data.Cube;
 import com.github.jakz.generubik.data.Side;
 import com.github.jakz.generubik.data.moves.FaceRotationMove;
+import com.github.jakz.generubik.data.moves.Move;
 
 public class FaceRotationMoveTests
 {
@@ -15,7 +16,7 @@ public class FaceRotationMoveTests
     Cube cube = new Cube();
     CornerSet expected = new CornerSet(cube);
     
-    cube.applyMove(FaceRotationMove.of(side, ccw));
+    cube.applyMove(Move.faceRotation(side, ccw));
     CornerSet actual = new CornerSet(cube);
     
     assertEquals(expected, actual);

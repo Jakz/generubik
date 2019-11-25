@@ -9,9 +9,9 @@ public class CubeRotationMove extends Move
   
   public final Axis axis;
   
-  public CubeRotationMove(Axis axis, boolean ccw)
+  protected CubeRotationMove(Axis axis, boolean ccw, String symbol)
   {
-    super(ccw);
+    super(symbol, ccw);
     this.axis = axis;
   }
 
