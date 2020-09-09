@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 import com.github.jakz.generubik.data.moves.Move;
+import com.github.jakz.generubik.data.moves.MoveSet;
 
 public class Cube
 {
@@ -140,6 +141,11 @@ public class Cube
   public void applyMove(Move move)
   {
     move.apply(this);
+  }
+  
+  public void apply(MoveSet set)
+  {
+    set.stream().forEach(this::applyMove);
   }
   
   public boolean isSolved()

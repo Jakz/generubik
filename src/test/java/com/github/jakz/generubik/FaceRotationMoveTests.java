@@ -93,4 +93,20 @@ public class FaceRotationMoveTests
   {
     testFaceRotationConsistency(Side.BACK, true);
   }
+  
+  @Test
+  public void reverseRotationsPreserveStatus()
+  {
+    for (Move move : Move.faceRotations)
+    {
+      Cube cube1 = new Cube();
+      cube1.shuffle();
+      Cube cube2 = cube1.dupe();
+      
+      cube1.applyMove(move);
+      cube1.applyMove(move.reverse());
+      
+      assertEquals(new CornerSet(cube2), new CornerSet(cube1));
+    }
+  }
 }

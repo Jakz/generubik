@@ -9,10 +9,28 @@ public class CubeRotationMove extends Move
   
   public final Axis axis;
   
-  protected CubeRotationMove(Axis axis, boolean ccw, String symbol)
+  protected CubeRotationMove(Axis axis, boolean ccw)
   {
-    super(symbol, ccw);
+    super(ccw);
     this.axis = axis;
+  }
+
+  @Override
+  public Move reverse()
+  {
+    return new CubeRotationMove(axis, !ccw);
+  }
+  
+  @Override
+  public String symbol()
+  {
+    return axis.name() + (ccw ? "'" : "");
+  }
+  
+  @Override
+  public String encoding()
+  {
+    return ccw ? axis.name().toLowerCase() : axis.name().toUpperCase();
   }
 
   @Override

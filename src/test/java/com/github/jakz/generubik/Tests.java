@@ -17,6 +17,7 @@ import com.github.jakz.generubik.data.Facet;
   FaceTests.class,
   CubeRotationMoveTests.class,
   FaceRotationMoveTests.class,
+  MoveSetTests.class
 })
 public class Tests
 {

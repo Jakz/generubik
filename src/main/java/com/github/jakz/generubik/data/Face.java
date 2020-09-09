@@ -1,6 +1,9 @@
 package com.github.jakz.generubik.data;
 
 import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Face
 {
@@ -127,6 +130,20 @@ public class Face
   public boolean isSolved()
   {
     return Arrays.stream(facets).allMatch(facet -> facet.color() == facets[0].color());
+  }
+  
+  /***
+   * 
+   * @return value in [0.0-1.0] which represents how much solved is this face
+   */
+  public float fitness()
+  {
+    EnumMap<Color, Integer> countBy = new EnumMap<>(Color.class);
+    
+    Arrays.stream(facets).map(Facet::color).forEach(c -> countBy.compute(c, (cc, i) -> i == null ? 0 : ++i));
+    
+    int max = countBy.values().stream().max(Integer::compare).get();
+    return max / (float)facets.length;
   }
   
   public Facet topLeft() { return get(Corner.TOP_LEFT); }

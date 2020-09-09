@@ -83,4 +83,20 @@ public class CubeRotationMoveTests
     assertNotEquals(cube1, cube2);
   }
   
+  @Test
+  public void reverseRotationsPreserveStatus()
+  {
+    for (Move move : Move.cubeRotations)
+    {
+      Cube cube1 = new Cube();
+      cube1.shuffle();
+      Cube cube2 = cube1.dupe();
+      
+      cube1.applyMove(move);
+      cube1.applyMove(move.reverse());
+      
+      assertEquals(new CornerSet(cube2), new CornerSet(cube1));
+    }
+  }
+  
 }
